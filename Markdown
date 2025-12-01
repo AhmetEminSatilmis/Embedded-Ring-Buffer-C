@@ -1,0 +1,37 @@
+# Generic Ring Buffer (Circular Buffer) in C
+
+This repository contains a lightweight, static-memory **Ring Buffer (Circular Buffer)** implementation designed for embedded systems. 
+
+It is commonly used in **UART**, **SPI**, and **Audio processing** drivers to handle high-speed data streams without data loss, acting as a FIFO (First-In-First-Out) queue.
+
+## 🚀 Key Features
+
+* **Static Memory Allocation:** Uses a fixed-size `uint8_t` array, avoiding `malloc` and dynamic memory fragmentation risks (Critical for Microcontrollers).
+* **O(1) Complexity:** Read and Write operations are constant time, ensuring deterministic performance for Real-Time systems.
+* **Modulo Arithmetic:** Uses the `%` operator for efficient circular index wrapping.
+* **Robust Error Handling:** Includes bool return types to indicate `Buffer Full` or `Buffer Empty` states, preventing data overwrites or invalid reads.
+
+## 🛠️ Technical Concepts
+
+* **Data Structures:** Struct-based encapsulation of buffer, head, and tail pointers.
+* **Pointer Arithmetic:** Efficient passing of data by reference.
+* **Memory Management:** Separation of logic (Head/Tail) from storage (Buffer Array).
+
+## 💻 Code Example
+
+```c
+RingBuffer_t uart_buffer;
+RingBuffer_Init(&uart_buffer);
+
+// Write Data (Sensor/UART)
+if (!RingBuffer_Write(&uart_buffer, 0xAA)) {
+    // Handle Buffer Full Error
+}
+
+// Read Data (Processor)
+uint8_t data;
+if (RingBuffer_Read(&uart_buffer, &data)) {
+    Process_Data(data);
+}
+
+Ahmet Emin Satilmis Mathematics Engineering Student at Yıldız Technical University Focus areas: Embedded Systems, C/C++, Algorithms
