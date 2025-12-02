@@ -34,4 +34,6 @@ if (RingBuffer_Read(&uart_buffer, &data)) {
     Process_Data(data);
 }
 
+## Author
+
 Ahmet Emin Satilmis Mathematics Engineering Student at Yıldız Technical University Focus areas: Embedded Systems, C/C++, Algorithms
